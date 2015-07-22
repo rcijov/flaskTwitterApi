@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>Twitter</h2>
+  
+  <form method="post" action="{{ url_for('twitter') }}">
+  	<input type="text" name="search" />
+	<select name="selectType">
+		<option selected value="all">all</option>
+  		<option value="user">user</option>
+	</select>
+	<input type="submit" value="Search">                           
+  </form>
+  
+
+  {% if tw %}
+  	{% for x in tw %}
+ 	<p>
+		Username : {{ x['user']['screen_name'] }} </br>
+		Text : {{ x['text'] }} </br>  
+	</p>
+  {% else %}
+	<p>
+		No results found 
+	</p>
+  {% endfor %}
+  
+  {% endif %}
+
+{% endblock %}
